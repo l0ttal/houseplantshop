@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+	<title>Houseplantshop</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div class="navbar navbar-fixed-top" th:fragment="header">
+		<div class="container">
+			<a class="navbar-brand" th:href="@{/}">Houseplantshop</a>
+			<div class="navbar-nav navbar-left">
+				<a th:href="@{/}">Home</a>
+				<a href="#" th:href="@{/genuslist}">Genus list</a>
+				<a href="#" th:href="@{/familylist}">Family list</a>
+			</div>
+			<div class="navbar-nav navbar-right">
+				<div th:if="${#authorization.expression('isAuthenticated()')}">
+					<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+					<form th:action="@{/logout}" method="post">
+						<input type="submit" value="Sign Out" class="btn btn-sm btn-danger" />
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

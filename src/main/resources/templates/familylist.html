@@ -1,11 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<title>Houseplantshop</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+	<title>Houseplantshop</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
+	<div th:replace="fragments/header :: header"></div>
 	<h1>Families</h1>
 	<table class="table table-striped">
 		<tr>
@@ -19,5 +20,6 @@
 		</tr>
 	</table>
 	<a href="/addfamily" class="btn btn-success">Add family</a>
+	<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

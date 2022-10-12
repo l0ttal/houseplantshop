@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Houseplantshop</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Add a family</h1>
+	<div>
+		 <form th:object="${family}" th:action="@{savefamily}" action="#" method="post"> 
+			 <label for="scientificName">Scientific name</label>
+			 	<input type="text" id="scientificName" th:field="*{scientificName}" />
+			 <br><br>
+			 <label for="commonName">Common name</label>
+			 	<input type="text" id="commonName" th:field="*{commonName}" />
+			 <br><br>
+			 <input type="submit" value="Save"></input>
+		 </form>
+	</div>
+</body>
+</html>

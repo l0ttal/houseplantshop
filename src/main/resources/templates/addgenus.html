@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Houseplantshop</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Add a genus</h1>
+	<div>
+		 <form th:object="${genus}" th:action="@{savegenus}" action="#" method="post"> 
+			 <label for="scientificName">Scientific name</label>
+			 	<input type="text" id="scientificName" th:field="*{scientificName}" />
+			 <br><br>
+			 <label for="commonName">Common name</label>
+			 	<input type="text" id="commonName" th:field="*{commonName}" />
+			 <br><br>
+			 <label for="family">Family</label>
+				 <select id="familylist" th:field="*{family}" class="form-control">
+				 	<option th:each="family : ${families}" th:value="${family.familyid}" th:text="${family.scientificName}" />
+				 </select>
+			 <div style="clear: both; display: block; height: 10px;"></div>
+			 <input type="submit" value="Save"></input>
+		 </form>
+	</div>
+</body>
+</html>

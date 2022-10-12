@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Houseplantshop</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Families</h1>
+	<table class="table table-striped">
+		<tr>
+			<th>Scientific Name</th>
+			<th>Common Name</th>
+		</tr>
+		<tr th:each = "family : ${families}">
+			<td th:text="${family.scientificName}"></td>
+			<td th:text="${family.commonName}"></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger" th:href="@{/deletefamily/{familyid}(familyid=${family.familyid})}">Delete</a></td>
+		</tr>
+	</table>
+	<a href="/addfamily" class="btn btn-success">Add family</a>
+</body>
+</html>

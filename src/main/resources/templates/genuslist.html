@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<title>Houseplantshop</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Genera</h1>
+	<table class="table table-striped">
+		<tr>
+			<th>Scientific Name</th>
+			<th>Common Name</th>
+			<th>Family</th>
+			<th sec:authorize="hasAuthority('ADMIN')"></th>
+		</tr>
+		<tr th:each = "genus : ${genera}">
+			<td th:text="${genus.scientificName}"></td>
+			<td th:text="${genus.commonName}"></td>
+			<td th:text="${genus.family.scientificName}"></td>
+			<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger" th:href="@{/deletegenus/{genusid}(genusid=${genus.genusid})}">Delete</a></td>
+		</tr>
+	</table>
+	<a href="/addgenus" class="btn btn-success">Add genus</a>
+</body>
+</html>

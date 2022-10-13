@@ -24,7 +24,12 @@ public class PlantController {
 	@Autowired
 	private FamilyRepository familyrepo;
 	
-	@RequestMapping(value = {"", "/plantlist"})
+	@RequestMapping(value = {"/", "/home"})
+	public String home(Model model) {
+		return "home";
+	}
+	
+	@RequestMapping(value = "/plantlist")
 	public String plantList(Model model) {
 		model.addAttribute("plants", plantrepo.findAll());
 		return "plantlist";

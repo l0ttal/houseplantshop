@@ -1,32 +1,43 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<title>Houseplantshop</title>
+	<title>Houseplant shop</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 <body>
 	<div th:replace="fragments/header :: header"></div>
-	<h1>Plants</h1>
-	<div class="background">
-	  <div class="container">
-	    <div class="panel pricing-table">     
-	      <div class="pricing-plan" th:each = "plant : ${plants}">
-	        <img src="https://s22.postimg.cc/8mv5gn7w1/paper-plane.png" alt="" class="pricing-img">
-	        <h2 class="pricing-header" th:text="${plant.scientificName}"></h2>
-	        <ul class="pricing-features">
-	          <li class="pricing-features-item" th:text="${plant.commonName}"></li>
-	          <li class="pricing-features-item" th:text="${plant.genus} ? ${plant.genus.scientificName} : ''"></li>
-	          <li class="pricing-features-item" th:text="${plant.family} ? ${plant.family.scientificName} : ''"></li>
-	        </ul>
-	        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/delete/{id}(id=${plant.id})}" class="btn pricing-button">Delete</a>
-	        <a class="btn pricing-button" th:href="@{/edit/{id}(id=${plant.id})}">Edit</a>
-	        <div>	
-	        	<a href="/add" class="btn pricing-button">Add plant</a>
-	        </div>
-	      </div>
-	    </div>
-	  </div>
+	<div class="page-contents">
+	<a sec:authorize="hasAuthority('ADMIN')" href="/add" class="admin-btn">Add plant</a>
+	<div class="pricing-table">
+		<div class="container-fluid mt-5">
+			<div class="row">
+				<div class="col-md-4" th:each="plant : ${plants}">
+					<div class="pricing-card p-3 text-center py-5 mt-2">
+						<div class="images">
+							<figure>
+								<img src="/img/87152.jpg" alt="" class="pricing-img">
+								<figcaption class="credit">
+									<a href="http://www.freepik.com">Designed by rawpixel.com / Freepik</a>
+								</figcaption>
+							</figure>
+						</div>
+						<h2 class="pricing-header" th:text="${plant.scientificName}"></h2>
+						<ul class="pricing-features">
+							<li class="pricing-features-item" th:text="${plant.commonName}"></li>
+							<li class="pricing-features-item" th:text="${plant.genus} ? ${plant.genus.scientificName} : ''"></li>
+							<li class="pricing-features-item" th:text="${plant.family} ? ${plant.family.scientificName} : ''"></li>
+						</ul>
+						<div>
+							<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/delete/{id}(id=${plant.id})}" class="delete-btn">Delete</a>
+							<a sec:authorize="hasAuthority('ADMIN')" class="admin-btn" th:href="@{/edit/{id}(id=${plant.id})}">Edit</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	</div>
 	<div th:replace="fragments/footer :: footer"></div>
 </body>

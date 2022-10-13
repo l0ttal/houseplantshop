@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>Houseplant shop</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	
+	<img src="/img/pexels-e-pro-1573242.jpg" height="800" />
+	// Kuvaaja E Pro palvelusta Pexels
+	
+		<section>
+			<div class="row no-gutters">
+				<div class="col-6">
+					<img src="/img/pexels-scott-webb-213727.jpg" height="400" />
+					// Kuvaaja Scott Webb palvelusta Pexels				
+				</div>
+				<div class="col-6">
+					<img src="/img/pexels-julia-kuzenkov-1974508.jpg" height="400" />
+				</div>
+			</div>
+		</section>
+
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

@@ -5,21 +5,48 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 	<link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <body>
 	<div th:replace="fragments/header :: header"></div>
 	
-	<img src="/img/pexels-e-pro-1573242.jpg" height="800" />
-	// Kuvaaja E Pro palvelusta Pexels
+	<section>
+		<div class="row">
+			<div class="col-12">
+				<img src="/img/pexels-e-pro-1573242.jpg" height="800" />
+				<div class="centered">
+					<h1 class="banner-header-1">Welcome</h1>
+					<p>Log in or sign up below to view the shop</p>
+					<a th:href="@{/signup}" class="banner-btn">Sign up</a>
+				</div>
+				<div class="bottom-left">
+					© E Pro / Pexels
+				</div>
+			</div>
+		</div>
+	</section>
 	
 		<section>
 			<div class="row no-gutters">
 				<div class="col-6">
 					<img src="/img/pexels-scott-webb-213727.jpg" height="400" />
-					// Kuvaaja Scott Webb palvelusta Pexels				
+					<div class="centered">
+						<h2 class="banner-header-2">Shop plants</h2>
+						<a th:href="@{/plantlist}" class="banner-btn">Shop</a>
+					</div>
+					<div class="bottom-left">
+						© Scott Webb / Pexels
+					</div>			
 				</div>
 				<div class="col-6">
-					<img src="/img/pexels-julia-kuzenkov-1974508.jpg" height="400" />
+					<img src="/img/pexels-amar-preciado-13268443.jpg" height="400" />
+					<div class="centered">
+						<h2 class="banner-header-2">Learn more about plants</h2>
+						<a th:href="@{/genuslist}" class="banner-btn">Read more</a>
+					</div>
+					<div class="bottom-left">
+						© Amar Preciado / Pexels
+					</div>	
 				</div>
 			</div>
 		</section>

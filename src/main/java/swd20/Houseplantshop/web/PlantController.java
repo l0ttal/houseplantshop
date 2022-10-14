@@ -25,7 +25,7 @@ public class PlantController {
 	private FamilyRepository familyrepo;
 	
 	@RequestMapping(value = {"/", "/home"})
-	public String home(Model model) {
+	public String home() {
 		return "home";
 	}
 	
@@ -62,5 +62,11 @@ public class PlantController {
 		model.addAttribute("genera", genusrepo.findAll());
 		model.addAttribute("families", familyrepo.findAll());
 		return "editplant";
+	}
+	
+	@RequestMapping(value = "/plantcard/{id}")
+	public String plantCard(@PathVariable("id") Long plantId, Model model) {
+		plantrepo.findById(plantId).ifPresent(p -> model.addAttribute("plant", p));
+		return "plantcard";
 	}
 }

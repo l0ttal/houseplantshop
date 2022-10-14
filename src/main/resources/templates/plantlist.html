@@ -5,6 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 	<link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <body>
 	<div th:replace="fragments/header :: header"></div>
@@ -17,19 +18,19 @@
 					<div class="pricing-card p-3 text-center py-5 mt-2">
 						<div class="images">
 							<figure>
-								<img src="/img/87152.jpg" alt="" class="pricing-img">
-								<figcaption class="credit">
-									<a href="http://www.freepik.com">Designed by rawpixel.com / Freepik</a>
-								</figcaption>
+								<a th:href="@{/plantcard/{id}(id=${plant.id})}"><img th:src="${plant.image} ? ${plant.image} : @{/img/87152.jpg}" class="pricing-img" height="500"></a>
+								<figcaption class="credit" th:text="${plant.imgSource}"></figcaption>
 							</figure>
 						</div>
-						<h2 class="pricing-header" th:text="${plant.scientificName}"></h2>
+						<h2 class="pricing-header"><a th:href="@{/plantcard/{id}(id=${plant.id})}" th:text="${plant.scientificName}"></a></h2>
+						<h3 th:text="${#numbers.formatDecimal(plant.price, 0, 'COMMA', 2, 'POINT')} + ' €'"></h3>
 						<ul class="pricing-features">
-							<li class="pricing-features-item" th:text="${plant.commonName}"></li>
-							<li class="pricing-features-item" th:text="${plant.genus} ? ${plant.genus.scientificName} : ''"></li>
-							<li class="pricing-features-item" th:text="${plant.family} ? ${plant.family.scientificName} : ''"></li>
+							<li class="pricing-features-item" th:text="'Common name: ' + ${plant.commonName}"></li>
+							<li class="pricing-features-item"><a th:href="@{/plantcard/{id}(id=${plant.id})}">Read more <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 						</ul>
 						<div>
+							<a class="admin-btn">Add to cart</a>
+							<br><br>
 							<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/delete/{id}(id=${plant.id})}" class="delete-btn">Delete</a>
 							<a sec:authorize="hasAuthority('ADMIN')" class="admin-btn" th:href="@{/edit/{id}(id=${plant.id})}">Edit</a>
 						</div>

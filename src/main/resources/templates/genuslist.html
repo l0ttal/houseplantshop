@@ -1,28 +1,60 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<title>Houseplantshop</title>
+	<title>Houseplant shop</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 <body>
 	<div th:replace="fragments/header :: header"></div>
-	<h1>Genera</h1>
-	<table class="table table-striped">
-		<tr>
-			<th>Scientific Name</th>
-			<th>Common Name</th>
-			<th>Family</th>
-			<th sec:authorize="hasAuthority('ADMIN')"></th>
-		</tr>
-		<tr th:each = "genus : ${genera}">
-			<td th:text="${genus.scientificName}"></td>
-			<td th:text="${genus.commonName}"></td>
-			<td th:text="${genus.family.scientificName}"></td>
-			<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger" th:href="@{/deletegenus/{genusid}(genusid=${genus.genusid})}">Delete</a></td>
-		</tr>
-	</table>
-	<a href="/addgenus" class="btn btn-success">Add genus</a>
+	<div class="page-contents">
+	<section>
+		<div class="row">
+			<div class="col-10">
+				<h1>Genera</h1>
+				<p>Genus (pl. genera) is a taxonomic rank used in 
+				the biological classification of living and fossil organisms as well as viruses.
+				In the hierarchy of biological classification, genus comes above species and 
+				below family. In binomial nomenclature, the genus name forms the first part of 
+				the binomial species name for each species within the genus.</p>
+			</div>
+		</div>
+	</section>
+	<br>
+	<section>
+		<div class="row">
+			<div class="col-4">
+				<figure>
+					<img src="/img/pexels-ravi-kant-2272643.jpg" height="500" />
+					<figcaption class="credit">
+						© Ravi Kant / Pexels
+					</figcaption>
+				</figure>
+			</div>
+			<div class="col-7">
+				<h4>In the shop: </h4>
+				<br>
+				<table class="table table-bordered">
+					<tr>
+						<th>Scientific Name</th>
+						<th>Common Name</th>
+						<th>Family</th>
+						<th sec:authorize="hasAuthority('ADMIN')"></th>
+					</tr>
+					<tr th:each = "genus : ${genera}">
+						<td th:text="${genus.scientificName}"></td>
+						<td th:text="${genus.commonName}"></td>
+						<td><a th:href="@{/familylist}" th:text="${genus.family} ? ${genus.family.scientificName} : ''"></a></td>
+						<td sec:authorize="hasAuthority('ADMIN')"><a class="delete-btn" th:href="@{/deletegenus/{genusid}(genusid=${genus.genusid})}">Delete</a></td>
+					</tr>
+				</table>
+			<a sec:authorize="hasAuthority('ADMIN')" href="/addgenus" class="admin-btn">Add genus</a>
+		</div>
+	</div>
+	</section>
+	</div>
+	
 	<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

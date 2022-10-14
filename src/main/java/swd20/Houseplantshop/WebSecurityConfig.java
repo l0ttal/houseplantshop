@@ -22,7 +22,8 @@ public class WebSecurityConfig  {
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http
         .authorizeRequests()
-        	.antMatchers("/css/**").permitAll() 
+        	.antMatchers("/css/**").permitAll()
+        	.antMatchers("/img/**").permitAll()
         	.antMatchers("/", "/home", "/signup", "/saveuser").permitAll()
         	.anyRequest().authenticated()
         	.and()
@@ -33,6 +34,7 @@ public class WebSecurityConfig  {
           .and()
       .logout()
           .permitAll()
+          .invalidateHttpSession(true)
           .and()
       .httpBasic();
      return http.build();   

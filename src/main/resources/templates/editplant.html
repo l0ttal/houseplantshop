@@ -1,36 +1,48 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-<title>Houseplantshop</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Houseplant shop</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <body>
-	<h1>Edit plant</h1>
-	<div>
-		 <form th:object="${plant}" th:action="@{/save}" action="#" method="post"> 
-		 
+	<div th:replace="fragments/header :: header"></div>
+	
+	<div class="page-contents">
+	<div class="back-navigation">
+		<i class="fa fa-chevron-left" aria-hidden="true"></i>
+		<a th:href="@{/plantlist}"> Back</a>
+	</div>
+
+	<h2>Edit plant</h2>
+	<br>
+	<div class="col-md-4 col-md-offset-4">
+		 <form th:object="${plant}" th:action="@{/save}" action="#" method="post"> 		 
 		 	 <label for="id"></label>
 		 		<input type="hidden" id="id" th:field="*{id}" />
-			 <label for="title">Scientific Name</label>
+			 <label for="title">Scientific Name: </label>
 			 	<input type="text" id="scientificName" th:field="*{scientificName}" />
 			 <br><br>
-			 <label for="author">Common Name</label>
+			 <label for="author">Common Name: </label>
 			 	<input type="text" id="commonName" th:field="*{commonName}" />
 			 <br><br>
-
-			 <label for="genus">Genus</label>
+			 <label for="genus">Genus: </label>
 				 <select id="genuslist" th:field="*{genus}" class="form-control">
 				 	<option th:each="genus : ${genera}" th:value="${genus.genusid}" th:text="${genus.scientificName}" />
 				 </select>
-			 <br><br>
-			 <label for="family">Family</label>
+			 <br>
+			 <label for="family">Family: </label>
 				 <select id="familylist" th:field="*{family}" class="form-control">
 				 	<option th:each="family : ${families}" th:value="${family.familyid}" th:text="${family.scientificName}" />
 				 </select>
-			 <div style="clear: both; display: block; height: 10px;"></div>
-			 <input type="submit" value="Save"></input>
+			 <br>
+			 <input type="submit" value="Save" class="admin-btn"></input>
 		 </form>
 	</div>
+	</div>
+	
 	<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

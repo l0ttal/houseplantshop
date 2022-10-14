@@ -16,6 +16,9 @@ public class Plant {
 	private Long id;
 	private String scientificName;
 	private String commonName;
+	private String image;
+	private String imgSource;
+	private double price;
 	
 	@ManyToOne
 	@JsonIgnoreProperties ("plants")
@@ -30,9 +33,12 @@ public class Plant {
 	public Plant() {		
 	}
 
-	public Plant(String scientificName, String commonName, Genus genus, Family family) {
+	public Plant(String scientificName, String commonName, String image, String imgSource, double price, Genus genus, Family family) {
 		this.scientificName = scientificName;
 		this.commonName = commonName;
+		this.image = image;
+		this.imgSource = imgSource;
+		this.price = price;
 		this.genus = genus;
 		this.family = family;
 	}
@@ -47,6 +53,10 @@ public class Plant {
 
 	public void setCommonName(String commonName) {
 		this.commonName = commonName;
+	}
+	
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public void setGenus(Genus genus) {
@@ -68,6 +78,10 @@ public class Plant {
 	public String getCommonName() {
 		return commonName;
 	}
+	
+	public String getImage() {
+		return image;
+	}
 
 	public Genus getGenus() {
 		return genus;
@@ -77,19 +91,36 @@ public class Plant {
 		return family;
 	}
 
+	public String getImgSource() {
+		return imgSource;
+	}
+
+	public void setImgSource(String imgSource) {
+		this.imgSource = imgSource;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
 	@Override
 	public String toString() {
 		if (this.genus != null && this.family != null) {
-			return "Plant [id=" + id + ", scientificName=" + scientificName + ", commonName=" + commonName + ", genus="
-					+ this.getGenus() + ", family=" + this.getFamily() + "]";
+			return "Plant [id=" + id + ", scientificName=" + scientificName + ", commonName=" + commonName + ", image=" + image + ", "
+					+ "imgSource=" + imgSource +", price=" + price + ", genus=" + this.getGenus() + ", family=" + this.getFamily() + "]";
 		} else if (this.genus != null && this.family == null) {
-			return "Plant [id=" + id + ", scientificName=" + scientificName + ", commonName=" + commonName + ", genus="
-					+ this.getGenus() + "]";
+			return "Plant [id=" + id + ", scientificName=" + scientificName + ", commonName=" + commonName + ", image" + image + ", "
+					+ "imgSource=" + imgSource +", price=" + price + ", genus=" + this.getGenus() + "]";
 		} else if (this.genus == null && this.family != null) {
-			return "Plant [id=" + id + ", scientificName=" + scientificName + ", commonName=" + commonName + ", family="
-		+ this.getFamily() + "]";
+			return "Plant [id=" + id + ", scientificName=" + scientificName + ", commonName=" + commonName + ", image" + image + ", "
+					+ "imgSource=" + imgSource +", price=" + price + ", family=" + this.getFamily() + "]";
 		} else {
-			return "Plant [id=" + id + ", scientificName=" + scientificName + ", commonName=" + commonName + "]";
+			return "Plant [id=" + id + ", scientificName=" + scientificName + ", commonName=" + commonName + ", image" + image + ", "
+					+ "imgSource=" + imgSource +", price=" + price + "]";
 		}
 	}
 }

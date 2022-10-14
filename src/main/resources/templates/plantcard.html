@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+	<title>Houseplant shop</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	
+	<div class="page-contents">
+	<div class="back-navigation">
+		<i class="fa fa-chevron-left" aria-hidden="true"></i>
+		<a th:href="@{/plantlist}"> Back</a>
+	</div>
+
+		<section>
+			<div class="row">
+				<div class="col-6">
+					<div class="images">
+						<figure>
+							<img th:src="${plant.image} ? ${plant.image} : @{/img/87152.jpg}" height="700" class="pricing-img">
+							<figcaption class="credit" th:text="${plant.imgSource}"></figcaption>
+						</figure>
+					</div>
+				</div>
+				<div class="col-6">
+					<h1 th:text="${plant.scientificName}"></h1>
+					<ul class="pricing-features">
+						<li class="pricing-features-item" th:text="'Common name: ' + ${plant.commonName}"></li>
+						<li class="pricing-features-item"><a th:href="@{/genuslist}" th:text="${plant.genus} ? 'Genus: ' + ${plant.genus.scientificName} : ''"></a></li>
+						<li class="pricing-features-item"><a th:href="@{/familylist}" th:text="${plant.family} ? 'Family: ' + ${plant.family.scientificName} : ''"></a></li>
+					</ul>
+					<h3 th:text="${#numbers.formatDecimal(plant.price, 0, 'COMMA', 2, 'POINT')} + ' €'"></h3>
+					<br>
+					<a class="admin-btn">Add to cart</a>
+				</div>
+			</div>
+		</section>
+	</div>
+	
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

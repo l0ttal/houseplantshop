@@ -1,25 +1,59 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<title>Houseplantshop</title>
+	<title>Houseplant shop</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
 </head>
 <body>
 	<div th:replace="fragments/header :: header"></div>
-	<h1>Families</h1>
-	<table class="table table-striped">
-		<tr>
-			<th>Scientific Name</th>
-			<th>Common Name</th>
-		</tr>
-		<tr th:each = "family : ${families}">
-			<td th:text="${family.scientificName}"></td>
-			<td th:text="${family.commonName}"></td>
-			<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger" th:href="@{/deletefamily/{familyid}(familyid=${family.familyid})}">Delete</a></td>
-		</tr>
-	</table>
-	<a href="/addfamily" class="btn btn-success">Add family</a>
+	<div class="page-contents">
+		<section>
+		<div class="row">
+			<div class="col-10">
+				<h1>Families</h1>
+				<p>Family is one of the eight major hierarchical taxonomic ranks in Linnaean taxonomy. 
+				It is classified between order and genus. A family may be divided into subfamilies, 
+				which are intermediate ranks between the ranks of family and genus. The official 
+				family names are Latin in origin; however, popular names are often used: 
+				for example, walnut trees and hickory trees belong to the family Juglandaceae, 
+				but that family is commonly referred to as the "walnut family".</p>
+			</div>
+		</div>
+	</section>
+	<br>
+	<section>
+		<div class="row">
+			<div class="col-4">
+				<figure>
+					<img src="/img/pexels-cottonbro-4505458.jpg" height="500" />
+					<figcaption class="credit">
+						@ cottonbro / Pexels
+					</figcaption>
+				</figure>
+			</div>
+			<div class="col-7">
+				<h4>In the shop: </h4>
+				<br>
+				<table class="table table-bordered">
+					<tr>
+						<th>Scientific Name</th>
+						<th>Common Name</th>
+						<th sec:authorize="hasAuthority('ADMIN')"></th>
+					</tr>
+					<tr th:each = "family : ${families}">
+						<td th:text="${family.scientificName}"></td>
+						<td th:text="${family.commonName}"></td>
+						<td sec:authorize="hasAuthority('ADMIN')"><a class="delete-btn" th:href="@{/deletefamily/{familyid}(familyid=${family.familyid})}">Delete</a></td>
+					</tr>
+				</table>
+				<a sec:authorize="hasAuthority('ADMIN')" href="/addfamily" class="admin-btn">Add family</a>
+			</div>
+		</div>
+		</section>
+	</div>
+	
 	<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

@@ -1,24 +1,36 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-	<title>Houseplantshop</title>
+	<title>Houseplant shop</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 </head>
 <body>
 	<div th:replace="fragments/header :: header"></div>
-	<h1>Add a family</h1>
-	<div>
+	
+	<div class="page-contents">
+	<div class="back-navigation">
+		<i class="fa fa-chevron-left" aria-hidden="true"></i>
+		<a th:href="@{/familylist}"> Back</a>
+	</div>
+	
+	<h2>Add a family</h2>
+	<br>
+	<div class="col-md-4 col-md-offset-4">
 		 <form th:object="${family}" th:action="@{savefamily}" action="#" method="post"> 
-			 <label for="scientificName">Scientific name</label>
+			 <label for="scientificName">Scientific name: </label>
 			 	<input type="text" id="scientificName" th:field="*{scientificName}" />
 			 <br><br>
-			 <label for="commonName">Common name</label>
+			 <label for="commonName">Common name: </label>
 			 	<input type="text" id="commonName" th:field="*{commonName}" />
 			 <br><br>
-			 <input type="submit" value="Save"></input>
+			 <input type="submit" value="Save" class="admin-btn"></input>
 		 </form>
 	</div>
+	</div>
+	
 	<div th:replace="fragments/footer :: footer"></div>
 </body>
 </html>

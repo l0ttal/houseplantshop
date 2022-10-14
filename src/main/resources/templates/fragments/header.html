@@ -4,19 +4,19 @@
 	    <ul class="nav navbar-nav">
 		  <li><a class="navbar-brand" th:href="@{/}">Houseplantshop</a></li>
 	      <li class="active"><a th:href="@{/home}">Home</a></li>
-	      <li><a th:href="@{/plantlist}">Plant list</a></li>
-	      <li><a th:href="@{/genuslist}">Genus list</a></li>
-	      <li><a th:href="@{/familylist}">Family list</a></li>
+	      <li><a th:href="@{/plantlist}">Shop</a></li>
+	      <li><a th:href="@{/genuslist}">Genera</a></li>
+	      <li><a th:href="@{/familylist}">Families</a></li>
 	    </ul>
     	<ul class="nav navbar-nav navbar-right" th:if="${#authorization.expression('isAuthenticated()')}">
-			<li><a th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</a></li>
+			<li><a th:inline="text"> [[${#httpServletRequest.remoteUser}]]</a></li>
 			<li><form th:action="@{/logout}" method="post">
 				<input type="submit" value="Sign Out" class="signout"/>
 			</form></li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right" th:if="${#authorization.expression('!isAuthenticated()')}">
-			<li><a th:href="@{/signup}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-			<li><a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+			<li><a th:href="@{/signup}"> Sign Up</a></li>
+			<li><a th:href="@{/login}"> Login</a></li>
       	</ul>
 	  </div>
 	</nav>

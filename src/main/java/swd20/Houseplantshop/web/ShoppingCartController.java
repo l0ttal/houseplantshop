@@ -24,15 +24,16 @@ public class ShoppingCartController {
 	private PlantRepository plantrepo;
 
 	// Show shopping cart
-	@RequestMapping(value = "/showcart")
+	@RequestMapping(value = "/shoppingcart")
 	public String showCart(Model model) {
 		model.addAttribute("cart", session.getAttribute("cart"));
-		return "cartlist"; // cartlist.html
+		return "shoppingcart"; 
 	}
 
 	// Add to shopping cart
 	@RequestMapping(value = "/addtocart/{id}", method = RequestMethod.GET)
 	public String addtoCart(@PathVariable(value = "id") Long plantId) {
+		@SuppressWarnings("unchecked")
 		List<Plant> cart = (List<Plant>) session.getAttribute("cart");
 
 		if (cart == null) { // ostoskoria ei ole
@@ -42,18 +43,31 @@ public class ShoppingCartController {
 
 		Plant item = plantrepo.findById(plantId).get();
 		cart.add(item);
-		return "redirect:/showcart";
+		return "redirect:/shoppingcart";
+	}
+	
+	// Delete from shopping cart
+	@RequestMapping(value = "/deletefromcart/{id}", method = RequestMethod.GET)
+	public String deleteFromCart(@PathVariable(value = "id") Long plantId) {
+		@SuppressWarnings("unchecked")
+		List<Plant> cart = (List<Plant>) session.getAttribute("cart");
+
+		Plant item = plantrepo.findById(plantId).get();
+		int index = cart.indexOf(item);
+		cart.remove(index);
+		return "redirect:/shoppingcart";
 	}
 
 	// Reset shopping chart
 	@RequestMapping(value = "/resetcart", method = RequestMethod.GET)
 	public String resetCart() {
+		@SuppressWarnings("unchecked")
 		List<Plant> cart = (List<Plant>) session.getAttribute("cart");
 
 		if (cart != null) { // ostoskori on
 			cart.clear(); // poistetaan ostoskoriin lisätyt asiat
 		}
 		
-		return "redirect:/showcart";
+		return "redirect:/shoppingcart";
 	}
 }

@@ -29,7 +29,7 @@
 							<li class="pricing-features-item"><a th:href="@{/plantcard/{id}(id=${plant.id})}">Read more <i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 						</ul>
 						<div>
-							<a class="admin-btn">Add to cart</a>
+							<a th:href="@{/addtocart/{id}(id=${plant.id})}" class="admin-btn">Add to cart</a>
 							<br><br>
 							<a sec:authorize="hasAuthority('ADMIN')" th:href="@{/delete/{id}(id=${plant.id})}" class="delete-btn">Delete</a>
 							<a sec:authorize="hasAuthority('ADMIN')" class="admin-btn" th:href="@{/edit/{id}(id=${plant.id})}">Edit</a>

@@ -30,6 +30,11 @@ public class UserController {
 		model.addAttribute("signupform", new SignupForm());
 		return "signup";
 	}
+	
+	@RequestMapping(value="/my-account")
+    public String myAccount() {	
+        return "myaccount";
+    }
 
 	/**
 	 * Create new user Check if user already exists & form validation

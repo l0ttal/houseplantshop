@@ -26,7 +26,7 @@ public class Genus {
 	private List<Plant> plants;
 	
 	@ManyToOne
-	@JsonIgnoreProperties ("genus")
+	@JsonIgnoreProperties("genera")
 	@JoinColumn(name = "familyid")
 	private Family family;
 	
